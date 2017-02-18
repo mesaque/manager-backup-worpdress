@@ -30,6 +30,7 @@ backupDATABASE() {
 }
 backupFILES() {
   tar -czf $3/${current_file_name}_thplwp.tgz --exclude="*\.log" --exclude=".git" --exclude="error_log" --exclude=$2/wp-content/uploads --exclude=$3 $2;
+  printf "[$(date) - Backup Files] Successfully done\n" | tee -a $basedir/logs/status.log && exit 0
 }
 backupAUTOCLEAN() {
 	echo 'autoclean';
