@@ -75,5 +75,5 @@ password: kS6BQWNbg9ZhULM5
 #files backups(without uploads)
 0 1 * * * /var/www/manager-backup-worpdress/manager.sh --backup-files /var/www/example.com /var/www/example.com/my-magic-backup
 #Full backup
-/var/www/manager-backup-worpdress/manager.sh --backup-all /var/www/example.com /var/www/example.com/my-magic-backup /var/www/wp-config.php
+0 2 * * * /var/www/manager-backup-worpdress/manager.sh --backup-all /var/www/example.com /var/www/example.com/my-magic-backup /var/www/wp-config.php
 ```
