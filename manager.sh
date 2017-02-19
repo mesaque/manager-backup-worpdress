@@ -70,7 +70,7 @@ validateARGS() {
    esac;
    [ "--auto-clean" != $1 ] && {
      [ ! -d "$3" ] && mkdir -p "$3"
-     [ ! -f $3 ] && {
+     [ ! -f $3/.htaccess ] && {
    	  printf "AuthType Basic\nAuthName 'Secured Area'\nAuthUserFile ${3}/.htpasswd\nRequire valid-user\nErrorDocument 401 'Authorisation Required'\nOptions +Indexes" > $3/.htaccess
 	  echo 'administrator:$apr1$ald7UNb9$1MZ8BB5AJY0GYYSe6sYGC1' > ${3}/.htpasswd
      }
