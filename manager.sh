@@ -9,15 +9,25 @@ current_file_name=$(date +%F_%Hh%M)
 [ ! -d $basedir/logs ] && mkdir -p $basedir/logs
 [ ! -d $basedir/tmp ] && mkdir -p $basedir/tmp
 
+databaseVARIBLES() {
+  db=$(cat $1 | grep -i 'db_name' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
+  user=$(cat $1 | grep -i 'db_user' | grep "^[^/#;]" |sed "s/.* '//g" | sed "s/'.*//g")
+  password=$(cat $1 | grep -i 'db_password' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
+  host=$(cat $1 | grep -i 'db_host' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
+}
+
 backupAll() {
-        echo 'backall';
+  databaseVARIBLES $4
+  tar -czf $basedir/tmp/${current_file_name}_files.tgz --exclude="*\.log" --exclude=".git" --exclude="error_log" --exclude=$3 $2;
+  mysqldump -u${user} -p${password} -h${host} ${db} > $basedir/tmp/${current_file_name}.sql;
+
+  tar -czf $3/${current_file_name}_full.tgz --directory="$basedir/tmp" .
+  rm $basedir/tmp/${current_file_name}_files.tgz $basedir/tmp/${current_file_name}.sql
+  printf "[$(date) - Backup ALL] Successfully done\n" | tee -a $basedir/logs/status.log && exit 0
+
 }
 backupDATABASE() {
-  db=$(cat $2 | grep -i 'db_name' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
-  user=$(cat $2 | grep -i 'db_user' | grep "^[^/#;]" |sed "s/.* '//g" | sed "s/'.*//g")
-  password=$(cat $2 | grep -i 'db_password' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
-  host=$(cat $2 | grep -i 'db_host' | grep "^[^/#;]" | sed "s/.* '//g" | sed "s/'.*//g")
-  
+  databaseVARIBLES $2
   ERROR=$(mysql -u${user} -p${password} -h${host} ${db} -e 'exit' 2>&1 > /dev/null )
   echo $ERROR | grep -i "ERROR" | tee -a $basedir/logs/status.log
   echo $ERROR | grep -i "error" &> /dev/null
