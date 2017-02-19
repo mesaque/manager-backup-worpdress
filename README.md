@@ -11,12 +11,13 @@ Requirements:
 
 
 Example Environment:
-wordpress domain: example.com
-wordpress root path: /var/www/example.com
-wordpress wp-config.php:  /var/www/wp-config.php
-your backup public folder:  /var/www/example.com/my-magic-backup
 
-- [--backup-database]Database Backup
+1. wordpress domain: example.com
+2. wordpress root path: /var/www/example.com
+3. wordpress wp-config.php:  /var/www/wp-config.php
+4. your backup public folder:  /var/www/example.com/my-magic-backup
+
+- **[--backup-database]Database Backup**
 
 {command} --backup-database {path-wp-config-file} {root-backup-dir}
 ```sh
@@ -26,7 +27,7 @@ your backup public folder:  /var/www/example.com/my-magic-backup
 /var/www/example.com/my-magic-backup
 ```
 
-- [--backup-files]Files Backup(Withou Uploads)
+- **[--backup-files]Files Backup(Withou Uploads)**
 
 {command} --backup-files {root-wordpress-path} {root-backup-dir}
 ```sh
@@ -36,7 +37,7 @@ your backup public folder:  /var/www/example.com/my-magic-backup
 /var/www/example.com/my-magic-backup
 ```
 
-- [--backup-all]Full Files Backup
+- **[--backup-all]Full Files Backup**
 
 {command} --backup-all {root-wordpress-path} {root-backup-dir} {path-wp-config-file}
 ```sh
@@ -47,7 +48,7 @@ your backup public folder:  /var/www/example.com/my-magic-backup
 /var/www/wp-config.php
 ```
 
-- [--auto-clean] Auto Clean for old backups
+- **[--auto-clean] Auto Clean for old backups**
 
 {command} --auto-clean {root-backup-dir} {number-days-old-to-delete}
 ```sh
