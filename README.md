@@ -1,8 +1,8 @@
 # Auto Manager Backups for WordPress
 
-## What is this?
+## What is this:
 
-## How it work?
+## How it work:
 
 Requirements:
 
@@ -17,6 +17,8 @@ Example Environment:
 3. wordpress wp-config.php:  /var/www/wp-config.php
 4. your backup public folder:  /var/www/example.com/my-magic-backup
 
+## How to use:
+--
 - **[--backup-database]Database Backup**
 
 {command} --backup-database {path-wp-config-file} {root-backup-dir}
