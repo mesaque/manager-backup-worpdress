@@ -29,7 +29,7 @@ Example Environment:
 /var/www/example.com/my-magic-backup
 ```
 
-- **[--backup-files]Files Backup(Withou Uploads)**
+- **[--backup-files]Files Backup(Without Uploads)**
 
 {command} --backup-files {root-wordpress-path} {root-backup-dir}
 ```sh
@@ -64,4 +64,16 @@ Example Environment:
 ```sh
 user: administrator
 password: kS6BQWNbg9ZhULM5
+```
+
+## Cron job
+```sh
+#auto clean
+0 0 * * * /var/www/manager-backup-worpdress/manager.sh --auto-clean /var/www/example.com/my-magic-backup 2
+# database backup
+10 0 * * * /var/www/manager-backup-worpdress/manager.sh --backup-database /var/www/wp-config.php /var/www/example.com/my-magic-backup
+#files backups(without uploads)
+0 1 * * * /var/www/manager-backup-worpdress/manager.sh --backup-files /var/www/example.com /var/www/example.com/my-magic-backup
+#Full backup
+/var/www/manager-backup-worpdress/manager.sh --backup-all /var/www/example.com /var/www/example.com/my-magic-backup /var/www/wp-config.php
 ```
