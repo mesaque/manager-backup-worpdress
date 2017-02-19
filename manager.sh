@@ -43,7 +43,8 @@ backupFILES() {
   printf "[$(date) - Backup Files] Successfully done\n" | tee -a $basedir/logs/status.log && exit 0
 }
 backupAUTOCLEAN() {
-	echo 'autoclean';
+	find ${2} -mindepth 1 -mtime +${3} -delete
+	printf "[$(date) - Auto Clean] Successfully done\n" | tee -a $basedir/logs/status.log && exit 0
 }
 validateARGS() {
   case "$1" in
@@ -61,6 +62,10 @@ validateARGS() {
     --backup-database)
 	[ ! "$2" ] &&  printf "[$(date)] missing argument for wp-config.php\n" | tee -a $basedir/logs/status.log  && exit 1
         [ ! "$3" ] &&  printf "[$(date)] missing argument for root backup folder\n" | tee -a $basedir/logs/status.log  && exit 1
+    ;;
+    --auto-clean)
+	[ ! "$2" ] &&  printf "[$(date)] missing argument for root backup folder\n" | tee -a $basedir/logs/status.log  && exit 1
+	[ ! "$3" ] &&  printf "[$(date)] missing argument for number of days to keep backup\n" | tee -a $basedir/logs/status.log  && exit 1
     ;;
    esac;
    [ ! -d "$3" ] && mkdir -p "$3"
