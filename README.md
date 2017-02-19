@@ -11,7 +11,6 @@ your backup public folder:  /var/www/example.com/my-magic-backup
 - [--backup-database]Database Backup
 
 {command} --backup-database {path-wp-config-file} {root-backup-dir}
-EX:
 ```sh
 /var/www/manager-backup-worpdress/manager.sh \
 --backup-database \
@@ -34,7 +33,8 @@ EX:
 {command} --backup-all {root-wordpress-path} {root-backup-dir} {path-wp-config-file}
 ```sh
 /var/www/manager-backup-worpdress/manager.sh \
---backup-all /var/www/example.com \
+--backup-all \
+/var/www/example.com \
 /var/www/example.com/my-magic-backup \
 /var/www/wp-config.php
 ```
@@ -44,11 +44,12 @@ EX:
 {command} --auto-clean {root-backup-dir} {number-days-old-to-delete}
 ```sh
 /var/www/manager-backup-worpdress/manager.sh \
+--auto-clean \
 /var/www/example.com/my-magic-backup \
 2
 ```
 
-### Authenc Default:
+### Authentication Default:
 ```sh
 user: administrator
 password: kS6BQWNbg9ZhULM5
