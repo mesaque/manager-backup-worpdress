@@ -1,6 +1,14 @@
-# manager-backup-worpdress
+# Auto Manager Backups for WordPress
+
+## What is this?
 
 ## How it work?
+
+Requirements:
+
+* mysqldump
+* tar
+
 
 Example Environment:
 wordpress domain: example.com
