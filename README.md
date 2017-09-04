@@ -77,3 +77,6 @@ password: kS6BQWNbg9ZhULM5
 #Full backup
 0 2 * * * /var/www/manager-backup-worpdress/manager.sh --backup-all /var/www/example.com /var/www/example.com/my-magic-backup /var/www/wp-config.php
 ```
+
+## sponsored by
+![GoBacklog Projetos Digitais](https://gobacklog.com/wp-content/uploads/2017/01/gobacklog-logo-2x.png)
